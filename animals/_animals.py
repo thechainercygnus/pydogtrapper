@@ -54,5 +54,7 @@ class Animal:
         _state = int(round(self.stress_level / 10, 0))
         if _state > len(STATES) - 1:
             self._state = len(STATES) - 1
-        if _state < 0:
+        elif _state < 0:
             self._state = 0
+        else:
+            self._state = _state
