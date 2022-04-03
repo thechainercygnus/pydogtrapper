@@ -33,3 +33,11 @@ jobs:
       - name: Test with pytest
         run: |
           pytest
+      - name: Badge Action
+          uses: emibcn/badge-action@v1.2.4
+          with:
+            label: 'Coverage'
+            status: '98.36%'
+            color: 'blue,555,daf'
+            path: '.github/badges/coverage.svg'
+
