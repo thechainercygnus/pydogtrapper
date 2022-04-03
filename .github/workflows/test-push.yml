@@ -30,14 +30,12 @@ jobs:
       - name: Test with pytest
         run: |
           pytest
-
-  publish_results:
-    name: Publish Unit Test Results
-    uses: EnricoMi/publish-unit-test-result-action@v1
-    if: always()
-    with:
-      files: "test-results/**/*.xml"
-    permissions:
-      checks: write
-      contents: read
-      issues: read
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          files: "test-results/**/*.xml"
+        permissions:
+          checks: write
+          contents: read
+          issues: read
