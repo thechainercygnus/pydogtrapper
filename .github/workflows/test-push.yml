@@ -1,9 +1,9 @@
 name: Unit Testing
 
-on: [push]
+on: [pull_request]
 
 jobs:
-  test:
+  unittests:
 
     runs-on: ubuntu-latest
     strategy:
@@ -33,6 +33,7 @@ jobs:
   
   
   publish-results:
+    needs: unittests
     permissions:
       checks: write
       contents: read
