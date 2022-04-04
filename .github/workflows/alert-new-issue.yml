@@ -20,6 +20,6 @@ jobs:
           DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
           DISCORD_CHANNELS: ${{ secrets.DISCORD_CHANNELS }}
           DISCORD_MSG_TITLE: '! New Issue Created: ${{ github.event.issue.title }}'
-          DISCORD_MESSAGE: '${{ github.event.issue.user.login }} reports the following issue ${{ $github.event.issue.body }}'
+          DISCORD_MESSAGE: '${{ github.event.issue.user.login }} reports the following issue ${{ github.event.issue.body }}'
         with:
           service: discord
