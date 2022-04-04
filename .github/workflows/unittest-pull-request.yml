@@ -4,9 +4,10 @@ on:
   push:
     branches:
       - main
+      - operations/actions/*
 
 jobs:
-  unittests:
+  pytest:
 
     runs-on: ubuntu-latest
     strategy:
@@ -33,3 +34,21 @@ jobs:
       - name: Test with pytest
         run: |
           pytest
+
+  pingme-job:
+    needs: pytest
+    runs-on: ubuntu-latest
+    name: PingMe
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Ping me On
+        uses: kha7iq/pingme-action@v1
+        env:
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+          DISCORD_CHANNELS: ${{ secrets.DISCORD_CHANNELS }}
+          DISCORD_MSG_TITLE: '>>> Action Result: pytest #${{ github.run_number }} - ${{ needs.pytest.result }}'
+          DISCORD_MESSAGE: 'TRIGGER: ${{ github.event_name }} | BRANCH: ${{ github.ref_name }} | REPO: ${{ github.server_url }}/${{ github.repository }}'
+        with:
+          service: discord
