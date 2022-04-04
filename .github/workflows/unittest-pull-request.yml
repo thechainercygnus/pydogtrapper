@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  unittests:
+  pytest:
 
     runs-on: ubuntu-latest
     strategy:
@@ -33,3 +33,21 @@ jobs:
       - name: Test with pytest
         run: |
           pytest
+
+  pingme-job:
+    needs: pytest
+    runs-on: ubuntu-latest
+    name: PingMe
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Ping me On
+        uses: kha7iq/pingme-action@v1
+        env:
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+          DISCORD_CHANNELS: ${{ secrets.DISCORD_CHANNELS }}
+          DISCORD_MSG_TITLE: 'Reference: ${{ github.ref }}'
+          DISCORD_MESSAGE: '${{ github.event_name }} - ${{ needs.pytest.result }}'
+        with:
+          service: discord
