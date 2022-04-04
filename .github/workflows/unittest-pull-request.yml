@@ -48,8 +48,7 @@ jobs:
         env:
           DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
           DISCORD_CHANNELS: ${{ secrets.DISCORD_CHANNELS }}
-          DISCORD_MSG_TITLE: '>>> Action Result: [${{ github.repository }}](${{ github.server_url }}/${{ github.repository }})'
-          DISCORD_MESSAGE: '**pytest** on ||${{ github.ref_name }}|| completed with status: **${{ needs.pytest.result }}** \
-                            ![img](https://cdn.dribbble.com/users/281280/screenshots/6508914/shibbabbig.png?compress=1&resize=400x300)'
+          DISCORD_MSG_TITLE: '>>> Action Result: ${{ github.server_url }}/${{ github.repository }}'
+          DISCORD_MESSAGE: '**pytest** on ||${{ github.ref_name }}|| Status: **${{ needs.pytest.result }}**'
         with:
           service: discord
