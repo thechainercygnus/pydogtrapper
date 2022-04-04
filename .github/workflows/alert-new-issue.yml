@@ -1,6 +1,8 @@
 name: New Issue
 
-on: [issue]
+on:
+  issues:
+    types: [opened]
 
 jobs:
   pingme-job:
