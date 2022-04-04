@@ -49,6 +49,6 @@ jobs:
           DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
           DISCORD_CHANNELS: ${{ secrets.DISCORD_CHANNELS }}
           DISCORD_MSG_TITLE: '>>> Action Result: pytest #${{ github.run_number }} - ${{ needs.pytest.result }}'
-          DISCORD_MESSAGE: '[REPO](${{ github.server_url }}/${{ github.repository }}) | BRANCH: ${{ github.ref_name }} | TRIGGER: ${{ github.event_name }}'
+          DISCORD_MESSAGE: 'TRIGGER: ${{ github.event_name }} | BRANCH: ${{ github.ref_name }} | REPO: ${{ github.server_url }}/${{ github.repository }}'
         with:
           service: discord
