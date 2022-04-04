@@ -48,7 +48,7 @@ jobs:
         env:
           DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
           DISCORD_CHANNELS: ${{ secrets.DISCORD_CHANNELS }}
-          DISCORD_MSG_TITLE: 'Reference: ${{ github.ref }}'
-          DISCORD_MESSAGE: '${{ github.event_name }} - ${{ needs.pytest.result }}'
+          DISCORD_MSG_TITLE: 'Action Result: ${{ github.repository }}'
+          DISCORD_MESSAGE: 'pytest on ${{ github.ref_name }} completed with status ${{ needs.pytest.result }}'
         with:
           service: discord
