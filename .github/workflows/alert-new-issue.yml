@@ -1,0 +1,25 @@
+name: New Issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  pingme-job:
+    permissions:
+      issues: read
+    runs-on: ubuntu-latest
+    name: PingMe
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Ping me On
+        uses: kha7iq/pingme-action@v1
+        env:
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+          DISCORD_CHANNELS: ${{ secrets.DISCORD_CHANNELS }}
+          DISCORD_MSG_TITLE: '! New Issue Created: ${{ github.event.issue.title }}'
+          DISCORD_MESSAGE: '${{ github.event.issue.user.login }} reports the following issue ${{ $github.event.issue.body }}'
+        with:
+          service: discord
