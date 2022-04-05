@@ -1,0 +1,1 @@
+{"coverage": {"type": "coverage", "line-rate": 0.98}, "\".\"": {"type": "package", "line-rate": 0.98}, "\"__init__.py\"": {"type": "class", "line-rate": 1.0}, "\"_animals.py\"": {"type": "class", "line-rate": 0.9767}, "\"_dogs.py\"": {"type": "class", "line-rate": 1.0}}

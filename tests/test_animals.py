@@ -1,3 +1,5 @@
+import os
+
 import pytest
 from animals import Animal, Dog
 from animals._animals import STATES
@@ -96,3 +98,23 @@ def test_should_catch_state_out_of_bounds(base_dog):
 
     assert base_dog.stress_level == -1000
     assert base_dog.state == STATES[0]
+
+
+# Planned Implementation
+@pytest.mark.skip
+def test_should_report_position_of_animal(base_animal):
+    assert base_animal.get_position() == (0, 0)
+
+
+# Planned Implementation
+@pytest.mark.skip
+def test_should_report_change_in_animal_position(base_animal):
+    assert base_animal.get_position() == (0, 0)
+    base_animal.move(1, -1)
+    assert base_animal.get_position() == (1, -1)
+
+
+# Planned Implementation
+@pytest.mark.skip
+def test_should_return_valid_path_to_image(base_animal):
+    assert os.path.exists(base_animal.image)

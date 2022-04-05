@@ -42,13 +42,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Expose Coverage Results
+        run: |
+          python3 utils/btr.py
+          echo "covreport=$(cat test-results.json)" >> $GITHUB_ENV
       
-      - name: Ping me On
+      - name: Ping me On Discord
         uses: kha7iq/pingme-action@v1
         env:
           DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
           DISCORD_CHANNELS: ${{ secrets.DISCORD_CHANNELS }}
           DISCORD_MSG_TITLE: '>>> Action Result: pytest #${{ github.run_number }} - ${{ needs.pytest.result }}'
-          DISCORD_MESSAGE: 'TRIGGER: ${{ github.event_name }} | BRANCH: ${{ github.ref_name }} | REPO: ${{ github.server_url }}/${{ github.repository }}'
+          DISCORD_MESSAGE: 'TRIGGER: ${{ github.event_name }} | BRANCH: ${{ github.ref_name }} | REPO: ${{ github.server_url }}/${{ github.repository }} | COVERAGE: ${{ env.covreport }}'
         with:
           service: discord
