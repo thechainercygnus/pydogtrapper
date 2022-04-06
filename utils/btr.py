@@ -1,7 +1,6 @@
 import argparse
 import json
 import os
-import pprint as pp
 from typing import NamedTuple
 
 COV_OBJECTS = ["coverage", "package", "class"]

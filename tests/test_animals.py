@@ -3,6 +3,7 @@ import os
 import pytest
 from animals import Animal, Dog
 from animals._animals import STATES
+from simpleobjects import Coordinates
 
 
 @pytest.fixture
@@ -101,17 +102,16 @@ def test_should_catch_state_out_of_bounds(base_dog):
 
 
 # Planned Implementation
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_should_report_position_of_animal(base_animal):
-    assert base_animal.get_position() == (0, 0)
+    assert base_animal.get_position == Coordinates(0, 0)
 
 
 # Planned Implementation
-@pytest.mark.skip
 def test_should_report_change_in_animal_position(base_animal):
-    assert base_animal.get_position() == (0, 0)
+    assert base_animal.get_position == Coordinates(0, 0)
     base_animal.move(1, -1)
-    assert base_animal.get_position() == (1, -1)
+    assert base_animal.get_position == Coordinates(1, -1)
 
 
 # Planned Implementation
