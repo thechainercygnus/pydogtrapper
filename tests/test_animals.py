@@ -101,13 +101,10 @@ def test_should_catch_state_out_of_bounds(base_dog):
     assert base_dog.state == STATES[0]
 
 
-# Planned Implementation
-# @pytest.mark.skip
 def test_should_report_position_of_animal(base_animal):
     assert base_animal.get_position == Coordinates(0, 0)
 
 
-# Planned Implementation
 def test_should_report_change_in_animal_position(base_animal):
     assert base_animal.get_position == Coordinates(0, 0)
     base_animal.move(1, -1)

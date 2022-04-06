@@ -22,7 +22,9 @@ class Map:
         )
         self._set_matrix()
 
+    # Tileset Functions
     def load_tileset(self) -> bool:
+        """Returns bool of tileset load success"""
         try:
             for tileset in os.listdir(self.TILESET_ROOT):
                 tileset_path = os.path.join(self.TILESET_ROOT, tileset)
@@ -34,7 +36,9 @@ class Map:
         except FileNotFoundError:
             return False
 
+    # Internal Class Functions
     def _set_matrix(self) -> None:
+        """Initializes the map matrix of self.size.width and self.size.height"""
         _matrix = [
             [[None] for i in range(self.size.width)] for _ in range(self.size.height)
         ]
