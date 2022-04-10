@@ -1,6 +1,8 @@
+import logging
 import os
 from random import randint
 
+from animals import Animal
 from dotenv import load_dotenv
 from simpleobjects import Dimensions, Matrix
 
@@ -11,10 +13,13 @@ try:
 except KeyError:
     MAX_SIZE = 64
 
+logger = logging.getLogger("pdt.maps")
+
 
 class Map:
     TILESET_ROOT = "./tilesets/"
     TILESET = {}
+    animals = []
 
     def __init__(self, size: int = None):
         self.size = Dimensions(
@@ -35,6 +40,33 @@ class Map:
             return True
         except FileNotFoundError:
             return False
+
+    # Animal Functions
+    def spawn_animals(self, animals: Animal | list[Animal]) -> bool:
+        try:
+            if isinstance(animals, list):
+                for animal in animals:
+                    self.animals.append(animal)
+                    self.matrix.matrix[animal.get_position.y][
+                        animal.get_position.x
+                    ] = animal
+                    animal.map = self
+                return True
+            else:
+                self.animals.append(animals)
+                self.matrix.matrix[animals.get_position.y][
+                    animals.get_position.x
+                ] = animals
+                animals.map = self
+                return True
+        except Exception as e:  # Will narrow as issues arise
+            logger.error(e)
+            return False
+
+    def update_animal_positions(self):
+        for animal in self.animals:
+            self.matrix.matrix[animal.get_position.y][animal.get_position.x] = animal
+            self.matrix.matrix[animal.last_position.y][animal.last_position.x] = None
 
     # Internal Class Functions
     def _set_matrix(self) -> None:

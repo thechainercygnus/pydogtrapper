@@ -13,6 +13,7 @@ STATES = ("normal", "alert", "frightened", "fear", "terror")
 
 class Animal:
     __counter = 0
+    map = None
 
     def __init__(
         self,
@@ -25,6 +26,7 @@ class Animal:
         self._ordinal = self.__counter
         self.species = species
         self._injuries = injuries
+        self._last_position = Coordinates(0, 0)
         self._position = init_position
         self._state = state or 0
         self._stress_level = self._state * 10 if self._state > 0 else 0
@@ -37,6 +39,7 @@ class Animal:
 
     # Movement Functions
     def move(self, x_translation: int, y_translation: int) -> None:
+        self._last_position = self._position
         x_result = self._position.x + x_translation
         y_result = self._position.y + y_translation
         self._position = Coordinates(x_result, y_result)
@@ -56,6 +59,10 @@ class Animal:
     @property
     def get_position(self) -> Coordinates:
         return self._position
+
+    @property
+    def last_position(self) -> Coordinates:
+        return self._last_position
 
     @property
     def injuries(self) -> dict:
